@@ -56,8 +56,10 @@ struct st_schannel {
   SecPkgContext_StreamSizes Sizes;
   CtxtHandle ctxt;
   MYSQL *mysql;
-  SecBuffer extraBuf; /* pre-read data from last time,  encrypted */
-  SecBuffer dataBuf;  /* unread data from last time, decrypted */
+
+  /* Cached data from the last read/decrypt call.*/
+  SecBuffer extraBuf; /* encrypted data read from server. */
+  SecBuffer dataBuf;  /* decrypted but still unread data from server.*/
 
 };
 
